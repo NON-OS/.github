@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-label="NØNOS. Zero-trust operating system. Built from bare metal.">
+  <defs><pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#1b1f24" stroke-width="1"/></pattern></defs>
+  <rect width="1200" height="320" fill="#0b0d10"/><rect width="1200" height="320" fill="url(#g)"/>
+  <!-- layered capsules on a zero-state kernel, right side -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="1.5">
+    <rect x="820" y="70" width="300" height="34" rx="6" fill="none" stroke="#2d333b" stroke-width="1.4"/><text x="970" y="92" text-anchor="middle" fill="#768390">CAPSULE · SIGNED</text>
+    <rect x="820" y="116" width="300" height="34" rx="6" fill="none" stroke="#2d333b" stroke-width="1.4"/><text x="970" y="138" text-anchor="middle" fill="#768390">CAPSULE · SIGNED</text>
+    <rect x="820" y="162" width="300" height="34" rx="6" fill="none" stroke="#2d333b" stroke-width="1.4"/><text x="970" y="184" text-anchor="middle" fill="#768390">CAPABILITIES</text>
+    <rect x="820" y="208" width="300" height="42" rx="6" fill="#e6edf3"/><text x="970" y="234" text-anchor="middle" fill="#0b0d10" letter-spacing="3">ZEROSTATE KERNEL</text>
+    <path d="M800 70 V250" stroke="#e6edf3" stroke-width="1.6" stroke-dasharray="3 4"/>
+    <circle cx="800" cy="70" r="4" fill="#e6edf3"/><circle cx="800" cy="250" r="4" fill="#e6edf3"/>
+  </g>
+  <rect x="72" y="84" width="60" height="60" rx="11" fill="#e6edf3"/>
+  <text x="102" y="126" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="36" fill="#0b0d10">Ø</text>
+  <text x="156" y="130" font-family="Georgia, 'Times New Roman', serif" font-size="52" fill="#e6edf3" letter-spacing="6">NØNOS</text>
+  <text x="74" y="188" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="23" fill="#adbac7">Zero-trust operating system. Built from bare metal.</text>
+  <text x="74" y="234" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#768390" letter-spacing="2">MICROKERNEL  ·  SIGNED CAPSULES  ·  TRANSPARENT PROOFS  ·  PRIVACY</text>
+</svg>
