@@ -68,20 +68,17 @@ external audit come before mainnet.
     <td>
       <a href="https://github.com/NON-OS/microkernel"><b>microkernel</b></a> <sub>The NØNOS microkernel, in Rust</sub><br>
       <a href="https://github.com/NON-OS/releases"><b>releases</b></a> <sub>Every release: images, checksums and the public material to verify them</sub><br>
-      <a href="https://github.com/NON-OS/nonos-docs"><b>nonos-docs</b></a> <sub>Kernel documentation</sub><br>
-      <a href="https://github.com/NON-OS/micro-kernel-only-tests"><b>micro-kernel-only-tests</b></a> <sub>Boot smoke harnesses and recorded results</sub><br>
-      <a href="https://github.com/NON-OS/nonos-ci"><b>nonos-ci</b></a> <sub>Static checks, baselines and trust-chain CI</sub><br>
-      <a href="https://github.com/NON-OS/VBox"><b>VBox</b></a> <sub>Run NØNOS in VirtualBox</sub>
+      <a href="https://github.com/NON-OS/microkernel/tree/main/docs"><b>docs</b></a> <sub>Kernel, userland and security documentation, in the microkernel repository</sub><br>
+      <a href="https://github.com/NON-OS/microkernel/tree/main/nonos-ci"><b>nonos-ci</b></a> <sub>Static checks, baselines and trust-chain CI</sub>
     </td>
   </tr>
   <tr>
     <th align="left">Trust chain</th>
     <td>
-      <a href="https://github.com/NON-OS/nonos-trust-keystore"><b>nonos-trust-keystore</b></a> <sub>Trust anchor, publisher keys, sealed policy, signed manifests and ledger</sub><br>
-      <a href="https://github.com/NON-OS/nonos-sign"><b>nonos-sign</b></a> <sub>Capsule signer and verifier, Ed25519 and ML-DSA-65</sub><br>
-      <a href="https://github.com/NON-OS/nonos-mk"><b>nonos-mk</b></a> <sub>Capsule packager and marketplace index</sub><br>
+      <a href="https://github.com/NON-OS/microkernel/tree/main/nonos-sign"><b>nonos-sign</b></a> <sub>Capsule signer and verifier, Ed25519 and ML-DSA-65</sub><br>
+      <a href="https://github.com/NON-OS/microkernel/tree/main/nonos-mk"><b>nonos-mk</b></a> <sub>Capsule packager and marketplace index</sub><br>
       <a href="https://github.com/NON-OS/nonos-mirror"><b>nonos-mirror</b></a> <sub>The package mirror</sub><br>
-      <a href="https://github.com/NON-OS/stark-attest"><b>stark-attest</b></a> <sub>Attest a set of artifacts with one 32-byte statement, transparently</sub>
+      <a href="https://github.com/NON-OS/microkernel/tree/main/stark-attest"><b>stark-attest</b></a> <sub>Attest a set of artifacts with one 32-byte statement, transparently</sub>
     </td>
   </tr>
   <tr>
