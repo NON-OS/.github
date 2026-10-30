@@ -17,8 +17,7 @@ Ethereum: one transaction per transfer, and inside it the chain verifies the who
 
 Every program runs in a box: a short list, in its signed listing, of what it may touch. A window. Its own
 home folder. The network over Nym or Anyone. Anything not on the list is refused, and the log says why.
-The 0.9.3 release brings 31 Linux programs onto the NØNOS desktop under that rule, each with its own
-window and none with rights of its own.
+The Marketplace lists 31 Linux programs, each with its own box. In 0.9.3 a program whose box grants a window opens it on the NØNOS desktop, as KeePassXC, swayimg and foot do, and gets no rights of its own.
 
 ![The layers of NØNOS, from the CPU up to the desktop](assets/diagram-layers.svg)
 
