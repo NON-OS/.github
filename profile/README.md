@@ -5,60 +5,45 @@
 
 <br>
 
-**NØNOS** is an operating system built from bare metal around one idea: a machine should trust as
-little as possible and remember as little as it needs. The kernel starts from zero state, runs in
-memory, and loads only software whose signature it can check. Every privilege is a capability
-granted on purpose, not something a process inherits by accident.
+NØNOS is an operating system built from bare metal around one idea: a machine should trust as little as
+possible and remember as little as it needs. The kernel starts from zero state, runs from memory, and
+loads only software whose signature it can check. Every privilege is a capability granted on purpose,
+never something a process inherits by accident.
 
-The same idea runs through the rest of the stack. **The NØNOS STARK** is a transparent proof
-system written from scratch: Goldilocks, FRI, Poseidon and Keccak, with no trusted setup and no
-pairings. **NØNOS Shield** uses it to move value privately on Ethereum. A transfer is one
-transaction, and inside it the chain verifies the whole proof and recomputes every constraint
-itself.
+![The NØNOS desktop, with Linux programs in their own windows](assets/nonos-desktop.jpg)
 
-<br>
+The rest of the stack follows the same rule. The NØNOS STARK is a transparent proof system written from
+scratch, with no trusted setup and no pairings. NØNOS Shield uses it to move value privately on
+Ethereum: one transaction per transfer, and inside it the chain verifies the whole proof itself.
 
-## How it fits together
+## The system
 
-```mermaid
-flowchart LR
-  subgraph Host["Build host"]
-    SRC["capsule source"] --> MK["nonos-mk<br/>package"]
-    MK --> SIGN["nonos-sign<br/>Ed25519 + ML-DSA-65"]
-  end
-  subgraph Trust["Trust chain"]
-    KS["nonos-trust-keystore<br/>anchor, policy, ledger"]
-    ATT["stark-attest<br/>one 32-byte statement"]
-  end
-  subgraph Machine["The machine"]
-    K["microkernel<br/>zero state, capabilities"]
-    C1["capsule"]
-    C2["capsule"]
-  end
-  SIGN --> KS
-  SIGN --> ATT
-  KS -->|verified at load| K
-  K --> C1
-  K --> C2
-```
+Every program runs in a box: a short list, in its signed listing, of what it may touch. A window. Its own
+home folder. The network over Nym or Anyone. Anything not on the list is refused, and the log says why.
+The 0.9.3 release brings 31 Linux programs onto the NØNOS desktop under that rule, each with its own
+window and none with rights of its own.
 
-<br>
+![The layers of NØNOS, from the CPU up to the desktop](assets/diagram-layers.svg)
 
-## Principles
+Ring 0 does only what ring 0 must. Drivers, networking and the desktop are capsules in ring 3, and every
+call they make is checked against a 40-bit capability word. Memory is wiped when you power off, and
+nothing touches a disk unless you install.
 
-**Zero state.** The system runs from memory and forgets on shutdown. Nothing persists unless it is
-asked to.
+## From source to a machine you can check
 
-**Capabilities, not ambient authority.** A process can do only what it has been handed an explicit
-right to do.
+A program reaches a NØNOS machine only through a build that anyone can repeat and a signature the kernel
+verifies before it runs a single instruction. Capsules carry a hybrid signature, Ed25519 and ML-DSA-65,
+checked against a sealed trust anchor.
 
-**Everything signed.** Capsules carry a hybrid signature, classical and post-quantum. The kernel
-checks it against a sealed trust anchor before a single instruction runs.
+![From source to a sealed image](assets/diagram-source-to-image.svg)
 
-**Proofs over promises.** Where a claim can be checked by a machine, it is: by a signature, by a
-transparent proof, or by a test that fails when the property breaks.
+The Marketplace applies the same chain to third-party software, so a listing says what a program may do
+and the kernel holds it to that.
 
-<br>
+![How the Marketplace decides what to trust](assets/diagram-marketplace-trust.svg)
+
+Where a claim can be checked by a machine, it is: by a signature, by a transparent proof, or by a test
+that fails when the property breaks.
 
 ## NØNOS Shield
 
@@ -73,25 +58,19 @@ Private transfers on Ethereum L1, verified by a STARK in a single transaction.
   </tr>
 </table>
 
-```mermaid
-flowchart LR
-  D["deposit<br/>a note joins the pool"] --> P["wallet proves<br/>the transfer"]
-  P --> S["one transaction<br/>STARK verified on chain"]
-  S --> R["receiver<br/>finds and spends the note"]
-  R --> W["withdrawal<br/>to any address"]
-```
+![A NØNOS machine and Ethereum](assets/diagram-machine-and-ethereum.svg)
 
-Blinded proofs, proving on your own device and an external audit come before mainnet.
-
-<br>
+Solid lines exist today. Dashed ones are a direction. Blinded proofs, proving on your own device and an
+external audit come before mainnet.
 
 ## Repositories
 
 <table>
   <tr>
-    <th align="left" width="28%">Kernel</th>
+    <th align="left" width="22%">Kernel</th>
     <td>
       <a href="https://github.com/NON-OS/microkernel"><b>microkernel</b></a> <sub>The NØNOS microkernel, in Rust</sub><br>
+      <a href="https://github.com/NON-OS/releases"><b>releases</b></a> <sub>Every release: images, checksums and the public material to verify them</sub><br>
       <a href="https://github.com/NON-OS/nonos-docs"><b>nonos-docs</b></a> <sub>Kernel documentation</sub><br>
       <a href="https://github.com/NON-OS/micro-kernel-only-tests"><b>micro-kernel-only-tests</b></a> <sub>Boot smoke harnesses and recorded results</sub><br>
       <a href="https://github.com/NON-OS/nonos-ci"><b>nonos-ci</b></a> <sub>Static checks, baselines and trust-chain CI</sub><br>
@@ -102,27 +81,36 @@ Blinded proofs, proving on your own device and an external audit come before mai
     <th align="left">Trust chain</th>
     <td>
       <a href="https://github.com/NON-OS/nonos-trust-keystore"><b>nonos-trust-keystore</b></a> <sub>Trust anchor, publisher keys, sealed policy, signed manifests and ledger</sub><br>
-      <a href="https://github.com/NON-OS/nonos-sign"><b>nonos-sign</b></a> <sub>Capsule signer and verifier, Ed25519 + ML-DSA-65</sub><br>
+      <a href="https://github.com/NON-OS/nonos-sign"><b>nonos-sign</b></a> <sub>Capsule signer and verifier, Ed25519 and ML-DSA-65</sub><br>
       <a href="https://github.com/NON-OS/nonos-mk"><b>nonos-mk</b></a> <sub>Capsule packager and marketplace index</sub><br>
+      <a href="https://github.com/NON-OS/nonos-mirror"><b>nonos-mirror</b></a> <sub>The package mirror</sub><br>
       <a href="https://github.com/NON-OS/stark-attest"><b>stark-attest</b></a> <sub>Attest a set of artifacts with one 32-byte statement, transparently</sub>
     </td>
   </tr>
   <tr>
-    <th align="left">Proofs</th>
+    <th align="left">Proofs and Shield</th>
     <td>
-      <b>NØNOS STARK</b> <sub>The transparent prover and verifier: Goldilocks, FRI, DEEP, Poseidon. Opening at launch</sub><br>
-      <b>NØNOS Shield</b> <sub>The shielded pool and its on-chain STARK verifier. Opening at launch</sub><br>
-      <a href="https://github.com/NON-OS/zkolang"><b>zkolang</b></a> <sub>A verifiable-compute language, proven by the NØNOS transparent STARK</sub>
+      <a href="https://github.com/NON-OS/STARKs"><b>STARKs</b></a> <sub>A transparent STARK over Goldilocks: circuits, verifiers, wallet prover, Zig client and Lean core</sub><br>
+      <a href="https://github.com/NON-OS/L1-Shield"><b>L1-Shield</b></a> <sub>Private payments on Ethereum L1, one STARK per transfer</sub><br>
+      <a href="https://github.com/NON-OS/shield-core"><b>shield-core</b></a> <sub>The Rust core of NØNOS Wallet</sub><br>
+      <a href="https://github.com/NON-OS/shield-android"><b>shield-android</b></a> · <a href="https://github.com/NON-OS/shield-ios"><b>shield-ios</b></a> <sub>NØNOS Wallet for Android and iOS</sub><br>
+      <a href="https://github.com/NON-OS/zkolang"><b>zkolang</b></a> <sub>A verifiable-compute language, proven by the NØNOS STARK</sub>
     </td>
   </tr>
   <tr>
-    <th align="left">Apps and tools</th>
+    <th align="left">Nil and tools</th>
     <td>
+      <a href="https://github.com/NON-OS/NIL"><b>NIL</b></a> <sub>A private workspace for teams who sign in with a wallet: tasks, docs, chat and files, encrypted in the browser</sub><br>
       <a href="https://github.com/NON-OS/nonos.software"><b>nonos.software</b></a> <sub>Wiki, manual, ISO downloads and news</sub><br>
-      <a href="https://github.com/NON-OS/android-app"><b>android-app</b></a> · <a href="https://github.com/NON-OS/ios-app"><b>ios-app</b></a> · <a href="https://github.com/NON-OS/NOXDashboard"><b>NOXDashboard</b></a> · <a href="https://github.com/NON-OS/NOXtools"><b>NOXtools</b></a>
+      <a href="https://github.com/NON-OS/BuyBot"><b>BuyBot</b></a> · <a href="https://github.com/NON-OS/gitbot"><b>gitbot</b></a> · <a href="https://github.com/NON-OS/NOXDashboard"><b>NOXDashboard</b></a> · <a href="https://github.com/NON-OS/NOXtools"><b>NOXtools</b></a> · <a href="https://github.com/NON-OS/nonos-wallpapers"><b>nonos-wallpapers</b></a>
     </td>
   </tr>
 </table>
+
+## Reporting a vulnerability
+
+Write to [team@nonos.systems](mailto:team@nonos.systems), or use the security policy of the repository
+concerned. Please do not open a public issue for a weakness.
 
 <br>
 
