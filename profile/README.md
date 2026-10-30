@@ -1,7 +1,4 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-  <img alt="NØNOS. Zero-trust operating system. Built from bare metal." src="assets/banner-light.svg" width="100%">
-</picture>
+![NØNOS · Privacy. Proofs. Software.](assets/banner.png)
 
 <br>
 
