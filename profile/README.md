@@ -91,6 +91,12 @@ external audit come before mainnet.
     </td>
   </tr>
   <tr>
+    <th align="left">Security toolkit</th>
+    <td>
+      <a href="https://github.com/NON-OS/nmap-cli"><b>nmap-cli</b></a> · <a href="https://github.com/NON-OS/subfinder-cli"><b>subfinder-cli</b></a> · <a href="https://github.com/NON-OS/dnsx-cli"><b>dnsx-cli</b></a> · <a href="https://github.com/NON-OS/naabu-cli"><b>naabu-cli</b></a> · <a href="https://github.com/NON-OS/httpx-cli"><b>httpx-cli</b></a> · <a href="https://github.com/NON-OS/katana-cli"><b>katana-cli</b></a> · <a href="https://github.com/NON-OS/ffuf-cli"><b>ffuf-cli</b></a> · <a href="https://github.com/NON-OS/nuclei-cli"><b>nuclei-cli</b></a> <sub>Eight safety-first recon orchestrators: scope-first, dry-run by default, hash-chained audit, SSH-signed scope. Italian, English and 中文.</sub>
+    </td>
+  </tr>
+  <tr>
     <th align="left">Nil and tools</th>
     <td>
       <a href="https://github.com/NON-OS/NIL"><b>NIL</b></a> <sub>A private workspace for teams who sign in with a wallet: tasks, docs, chat and files, encrypted in the browser</sub><br>
